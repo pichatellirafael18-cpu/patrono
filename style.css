@@ -1,0 +1,377 @@
+/* --- Base Reset & Fonts --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0808;
+    --primary-red: #8B0000;
+    --primary-gold: #D4AF37;
+    --text-light: #e0d0c0;
+    --dimmer: rgba(0,0,0,0.7);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'IM Fell English', serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    background: radial-gradient(circle at center, rgba(26,16,16,0.8) 0%, rgba(0,0,0,0.95) 100%),
+                url('bg.png') center/cover no-repeat;
+    cursor: auto /* Keep base cursor hidden during auto-phases if needed, controlled via JS */
+}
+
+/* --- System Classes --- */
+.screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s;
+    z-index: 10;
+}
+
+.screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.title-rune {
+    font-family: 'Pirata One', 'Cinzel Decorative', cursive;
+    color: var(--primary-gold);
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.title-rune.glow {
+    text-shadow: 0 0 15px var(--primary-gold), 0 0 30px var(--primary-gold);
+}
+
+/* --- Ghost Cursor --- */
+/* It will be manipulated via JS to "ghost type" and "click" */
+#ghost-cursor {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(212,175,55,0.7) 0%, rgba(0,0,0,0) 70%);
+    box-shadow: 0 0 10px rgba(212,175,55,0.5);
+    transition: opacity 0.5s;
+    opacity: 0; 
+}
+#ghost-cursor.visible {
+    opacity: 1;
+}
+
+/* --- 1. Impact Screen --- */
+#screen-impact {
+    background: black;
+}
+
+.glitch-text {
+    font-family: 'Pirata One', serif;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--primary-red);
+    text-shadow: 0 0 10px var(--primary-red), 0 0 20px var(--primary-red);
+    animation: pulsar 2s infinite alternate;
+}
+
+@keyframes pulsar {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 30px var(--primary-red), 0 0 50px var(--primary-red); }
+}
+
+/* Background Particles (simple css simulation) */
+.impact-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* --- 2. Login Screen --- */
+.terminal-box {
+    background: rgba(20, 10, 10, 0.85);
+    border: 2px solid #3e2723;
+    box-shadow: inset 0 0 20px #000, 0 0 30px var(--primary-red);
+    padding: 3rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    color: var(--primary-gold);
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.input-group input {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--primary-gold);
+    color: white;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    font-family: monospace;
+    outline: none;
+    border-radius: 4px;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.password-wrapper input { width: 100%; }
+
+#eye-btn {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    z-index: 5;
+    padding: 5px;
+}
+
+#eye-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.rpg-btn {
+    background: linear-gradient(180deg, #4a1919 0%, #2b0b0b 100%);
+    color: var(--primary-gold);
+    border: 1px solid var(--primary-gold);
+    padding: 12px 20px;
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: 'Pirata One', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.rpg-btn:hover {
+    background: linear-gradient(180deg, #5c2020 0%, #3d1010 100%);
+    box-shadow: 0 0 10px var(--primary-red);
+}
+
+.rpg-btn.active-click {
+    transform: scale(0.95);
+    background: linear-gradient(180deg, #7a2020 0%, #4d1010 100%);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 0 5px var(--primary-red);
+}
+
+
+.rpg-btn.gold {
+    background: linear-gradient(180deg, var(--primary-gold) 0%, #a67c00 100%);
+    color: black;
+    border-color: #ffe066;
+}
+.rpg-btn.gold:hover {
+    box-shadow: 0 0 20px var(--primary-gold);
+}
+
+/* --- 3. Loading Screen --- */
+.loader-rune {
+    width: 60px;
+    height: 60px;
+    border: 4px solid var(--bg-dark);
+    border-top: 4px solid var(--primary-gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.loading-text {
+    font-size: 1.5rem;
+    color: var(--primary-red);
+    font-family: 'Pirata One', serif;
+    letter-spacing: 2px;
+}
+
+/* --- 4. Game Screen --- */
+.game-container {
+    background: rgba(15, 10, 10, 0.9);
+    border: 2px solid var(--primary-gold);
+    border-radius: 10px;
+    padding: 2.5rem;
+    max-width: 650px;
+    width: 90%;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    position: relative;
+}
+
+.lore-text {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.narrative-box {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: 1.25rem;
+}
+
+.choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.result {
+    margin-top: 20px;
+    color: #ffb74d;
+    font-style: italic;
+    font-size: 1.1rem;
+    text-align: center;
+    min-height: 25px; /* prevent layout jumps */
+    transition: opacity 1s ease-in-out;
+}
+
+.result.hidden { opacity: 0; }
+
+/* --- 5. Final Screen --- */
+.final-box {
+    background: rgba(20, 5, 5, 0.9);
+    border: 3px solid var(--primary-gold);
+    padding: 3rem;
+    border-radius: 15px;
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.9), 0 0 50px rgba(212,175,55,0.4);
+}
+
+.final-box .narrative-box {
+    text-align: justify;
+    text-shadow: 0 1px 2px rgba(0,0,0,1);
+}
+
+.final-box p {
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: var(--primary-gold);
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* --- Mobile Responsiveness --- */
+@media screen and (max-width: 768px) {
+    .title-rune {
+        font-size: 1.8rem;
+    }
+    .glitch-text {
+        font-size: 1.8rem;
+    }
+    .terminal-box, .game-container, .final-box {
+        padding: 1.5rem;
+        width: 95%;
+    }
+    .input-group label {
+        font-size: 1rem;
+    }
+    .input-group input {
+        font-size: 1rem;
+        padding: 8px 10px;
+    }
+    .rpg-btn {
+        font-size: 1.1rem;
+        padding: 10px 15px;
+    }
+    .narrative-box {
+        font-size: 1.1rem;
+    }
+    .highlight {
+        font-size: 1.2rem;
+    }
+    .loader-rune {
+        width: 40px;
+        height: 40px;
+    }
+    .loading-text {
+        font-size: 1.2rem;
+        text-align: center;
+        padding: 0 10px;
+    }
+}
+
+/* --- Novas Animações para Tela de Impacto --- */
+/* --- Novas Animações para Tela de Impacto --- */
+@keyframes mysteriousFadeIn {
+    0% { opacity: 0; filter: blur(10px); transform: scale(0.9); }
+    100% { opacity: 1; filter: blur(0); transform: scale(1); }
+}
+
+@keyframes delayedFadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.anim-title {
+    opacity: 0;
+    /* Faz um fade in calmo e depois herda a animação original pulsar (que existia antes) em repetição */
+    animation: mysteriousFadeIn 1.5s ease-out forwards, pulsar 2s ease-in-out 1.5s infinite alternate;
+}
+
+.anim-delay-element {
+    opacity: 0;
+    animation: delayedFadeIn 1.5s ease-out 1.5s forwards;
+}
+
+/* --- Footer --- */
+.game-footer {
+    position: fixed;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--primary-gold);
+    font-size: 0.9rem;
+    font-family: 'Pirata One', 'Cinzel Decorative', cursive;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    z-index: 9999;
+    pointer-events: none;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}

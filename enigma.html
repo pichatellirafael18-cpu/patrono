@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Saga do Mensageiro - Convite Auditório</title>
+    <!-- Favicon RPG: Escudo -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=IM+Fell+English:ital@0;1&family=Pirata+One&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Ghost Cursor / Custom Cursor -->
+
+    <!-- 1. Tela Inicial de Impacto -->
+    <div id="screen-impact" class="screen active">
+        <div class="impact-content"
+            style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div id="particles"></div>
+            <h1 class="title-rune glow anim-title"
+                style="font-size: 3rem; margin-bottom: 2rem; max-width: 800px; line-height: 1.2;">NÃO FECHE!!!<br>ALGO
+                IMPORTANTE ESTÁ PRESTES A ACONTECER!!!</h1>
+            <div class="anim-delay-element"
+                style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                <p
+                    style="color: var(--primary-gold); margin-bottom: 15px; font-size: 1.2rem; font-family: 'Pirata One', serif;">
+                    Deixe em tela cheia para melhor experiência</p>
+                <button id="btn-fullscreen-start" class="rpg-btn" style="max-width: 300px; margin: 0 auto;">Tela
+                    Cheia</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Tela de Login Simulada -->
+    <div id="screen-login" class="screen hidden">
+        <div class="terminal-box">
+            <h2 class="title-rune">Registros de Yggdrasil</h2>
+            <div class="input-group">
+                <label>Guerreiro do Destino</label>
+                <input type="text" id="username" value="dsmedio" readonly>
+            </div>
+            <div class="input-group">
+                <label>Runas de Acesso</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="Digite as runas...">
+                    <button id="eye-btn" aria-label="Revelar Sabedoria">
+                        <svg class="eye-icon closed" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button id="submit-login" class="rpg-btn">Validar Runas</button>
+        </div>
+    </div>
+
+    <!-- 3. Tela de Loading / Transição Narrativa -->
+    <div id="screen-loading" class="screen hidden">
+        <div class="loading-content">
+            <div class="loader-rune"></div>
+            <p class="loading-text">Conectando aos registros esquecidos do reino...</p>
+        </div>
+    </div>
+
+    <!-- 4. Gameplay: RPG Phases -->
+    <div id="screen-game" class="screen hidden">
+        <div class="game-container">
+            <div id="lore-header" class="lore-text">Registro de Ecos e Sombras...</div>
+            <h2 id="phase-title" class="title-rune">## Fase Título ##</h2>
+            <div class="narrative-box">
+                <p id="phase-narrative" class="narrative">A narrativa da fase atual aparecerá aqui, contando a jornada
+                    do mensageiro em tempos de escuridão.</p>
+            </div>
+
+            <p id="phase-result" class="result hidden">Resultado da escolha gerada irá aparecer aqui com um efeito
+                místico.</p>
+
+            <div id="game-choices" class="choices-container">
+                <!-- Buttons injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-final" class="screen hidden">
+        <div class="final-box">
+            <h2 class="title-rune glow">Salão das Vozes (O Auditório)</h2>
+            <div class="narrative-box scroll">
+                <p>O véu das ilusões se dissipa. A neblina cede lugar à realidade e o grandioso <strong>Salão das
+                        Vozes</strong> revela sua verdadeira forma: o <strong>Auditório</strong>.</p>
+                <p>Todas as trilhas que você percorreu, todos os medos que superou e os mistérios que desvendou
+                    culminaram neste espaço onde muitas mentes se reúnem para aprender e compartilhar.</p>
+                <p>A percepção toma conta do seu ser: As ramificações não eram destinos distintos, mas sim formas
+                    diferentes de forjar sua alma para este encontro.</p>
+                <p class="highlight" style="margin-bottom: 20px;">O evento real acaba de começar!</p>
+                <p class="highlight" style="color: #ffb74d; font-size: 1.6rem; text-shadow: 0 0 10px rgba(255, 183, 77, 0.4);">Vá ao auditório que lá estará o verdadeiro "Desafio"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sounds (simulated visual for browser policy safety if audio fails, audio elements can be added but better to rely on UI feedback to ensure it always wroks smoothly) -->
+
+    <footer class="game-footer">
+        <p>&copy; 2026 Desenvolvimento de sistemas/3DS - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
