@@ -83,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const rpgNodes = {
         start: {
             title: "O Despertar",
-            narrative: "Você desperta em um mundo desconhecido, com a mente turva. Diante de você, um exótico grupo de aventureiros lhe estende a mão. O líder declara: 'A jornada nos chama. Acompanhe-nos rumo ao desconhecido. Ao final de todas as trilhas, um grandioso salão onde muitos se reúnem para ouvir e aprender nos aguarda.'",
-            nextNode: "hub"
+            narrative: "Vocês despertam. A mente está turva. Diante de vocês, um grupo de aventureiros estende a mão. O líder fala: 'A jornada nos chama. Ao final de todas as trilhas, um grandioso Salão onde muitos se reúnem para ouvir e aprender nos aguarda",
+            nextNode: "hub" 
         },
         hub: {
             title: "A Taverna Imaginária",
-            narrative: "Chegando ao centro deste domínio pitoresco, você entra em uma taverna flutuante. O taverneiro limpa uma caneca translúcida e avisa: 'Para alcançar nossa grande câmara de vozes, sua trilha se bifurca: O Caminho do Conhecimento, através do Arquivo dos Ecos, ou O Caminho da Diversão, direto para a Arena dos Jogos.'",
+            narrative: "Chegamos à Taverna Imaginária — o nome do projeto, da ideia, da iniciativa que estamos aqui para apresentar. O taverneiro nos avisa: existem dois caminhos até este Salão das Vozes",
             nextNode: "riddle"
         },
         riddle: {
